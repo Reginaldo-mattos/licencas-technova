@@ -1,0 +1,19 @@
+package com.technova.licencas.repository;
+
+import com.technova.licencas.model.Licenca;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface LicencaRepository extends JpaRepository<Licenca, Long> {
+
+    // Método customizado para buscar licenças por status (RF004)
+    List<Licenca> findByStatus(String status);
+
+    // Método para buscar licenças que vencem antes de uma data específica
+    List<Licenca> findByDataVencimentoBefore(java.time.LocalDate data);
+    
+    // Método para buscar por Fornecedor
+    List<Licenca> findByFornecedorContainingIgnoreCase(String fornecedor);
+}
